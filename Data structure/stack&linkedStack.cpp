@@ -109,3 +109,55 @@ public:
         return s;  // Return the string without duplicates
     }
 };
+
+class StackLinked
+{
+private:
+    struct Node
+    {
+        int data { };     // Stores the data of the node.
+        Node* next { };   // Pointer to the next node in the linked list.
+        // Constructor that initializes a node with the given data.
+        Node(int data) :data(data)
+        {
+        }
+    };
+    Node *head { };  // The head pointer (or top of the stack).
+public:
+    ~StackLinked()
+    {
+        while (!isEmpty())  // Keep popping elements until the stack is empty.
+            pop();
+    }
+    void printStack ()
+    {
+        for (Node *cur=head;cur;cur=cur->next)  // Traverse from head to the last node.
+            cout<<cur->data<<" ";  // Print data for each node.
+        cout<<endl;
+    }
+    bool isEmpty ()
+    {
+        return !head;  // If head is nullptr, the stack is empty.
+    }
+    void push (int val)
+    {
+        Node *itm=new Node(val);  // Create a new node with the provided value.
+        itm->next=head;  // Point the new node's next to the current head.
+        head=itm;  // Update head to the new node.
+    }
+    int pop ()
+    {
+        assert(!isEmpty());  // Ensure that the stack is not empty.
+        int val=head->data;  // Retrieve the value from the top node.
+        Node *tmp=head;  // Temporarily store the current head.
+        head=head->next;  // Move the head pointer to the next node.
+        delete tmp;  // Delete the old head node.
+        return val;  // Return the popped value.
+    }
+    int peak ()
+    {
+        assert(!isEmpty());  // Ensure the stack is not empty.
+        int element = head->data;  // Get the value at the top.
+        return element;  // Return the top element without popping it.
+    }
+};
