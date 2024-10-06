@@ -17,7 +17,7 @@ void mergeSortedSubarrays(vector<int>& lst, int start, int mid, int end)
     for (int i = start; i <= end; ++i)
         lst[i] = tmp[i]; // Copy the merged elements back to the original array
 }
-void MergeSort(vector<int>& lst, int start, int end)
+void MergeSort(vector<int>& lst, int start, int end)// O(n log n)
 {
     if (start == end)
         return; // Base case: If the subarray has one element, it's already sorted.
